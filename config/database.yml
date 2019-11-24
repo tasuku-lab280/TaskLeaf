@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: taskleaf_development
+  host: db
+  username: postgres
+  password:
+
+test:
+  <<: *default
+  database: taskleaf_test
+  host: db
+  username: postgres
+  password:
+
+production:
+  <<: *default
+  database: taskleaf_production
+  username: taskleaf
+  password: <%= ENV['TASKLEAF_DATABASE_PASSWORD'] %>
